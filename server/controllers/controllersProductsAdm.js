@@ -66,9 +66,13 @@ module.exports.editProduct = (req,res) =>{
   }
   Product.findOneAndUpdate({_id: req.params.id},fieldsToUpdate, {new:true})
   .then((productUpdated) =>{
+    if (!productUpdated) {
+      return res.status(404).json({ message: "Product not found" });
+    }
     return res.status(200).json(productUpdated);
   })
   .catch((error) => {
+    console.error("Update failed:", error); // Log de errores del servidor
     return res.status(400).json(error);
   });
 };
@@ -79,6 +83,7 @@ module.exports.deleteProduct = (req,res) =>{
     return res.status(204).end();
   })
   .catch((error) => {
+
     return res.status(400).json(error);
   })
 }

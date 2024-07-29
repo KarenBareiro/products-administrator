@@ -3,9 +3,10 @@ import './App.css';
 import FormProduct from '../FormProduct/FormProduct';
 import ProductsList from '../ProductsList/ProductsList';
 import axios from 'axios';
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes} from "react-router-dom";
 import ProductDetails from '../ProductDetails/ProductDetails';
-import { useNavigate } from 'react-router-dom';
+import FormEditProduct from '../FormEditProduct/FormEditProduct';
+
 
 function App() {
   const [productsList, setProductsList] = useState([]);
@@ -43,7 +44,8 @@ function App() {
             </>
           } 
         />
-        <Route path="/details/product/:_id" element= {<ProductDetails productsList={productsList} removeProductFromList={removeProductFromList}/>}/>
+        <Route path="/:_id" element= {<ProductDetails productsList={productsList} removeProductFromList={removeProductFromList}/>}/>
+        <Route path="/:_id/edit" element= {<FormEditProduct productsList={productsList} removeProductFromList={removeProductFromList}/>}/>
       </Routes>
     </>
   );

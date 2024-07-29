@@ -22,7 +22,7 @@ const Form = ({updateProductList}) =>{
             const respuesta = await axios.post(URL, newProduct) //creamos el producto en la base de datos
             console.log("data:",respuesta.data)
 
-            updateProductList(respuesta.data); //llamamaos a la uncion para actualizar la lista de productos
+            updateProductList(respuesta.data); //llamamaos a la funcion para actualizar la lista de productos
             setTitle("");
             setPrice("");
             setDescription(0);
@@ -35,12 +35,6 @@ const Form = ({updateProductList}) =>{
             setError (error.response.statusText);
 
         }
-
-        //limpiamos los campos del formulario
-        // setTitle("");
-        // setPrice(0);
-        // setDescription("");
-        // setError("");
     }
 
     return (
@@ -65,7 +59,7 @@ const Form = ({updateProductList}) =>{
                         onChange = { (e) => setPrice(e.target.value)}/>
             </div>
             <div>
-                <label htmlFor="description">Description:</label>
+                <label htmlFor="description">Description: </label>
                 <textarea type ="text"
                         id = "description"
                         name = "description"
