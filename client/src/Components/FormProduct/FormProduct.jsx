@@ -5,7 +5,7 @@ import ProductsList from "../ProductsList/ProductsList";
 
 const Form = ({updateProductList}) =>{
 
-    const [title, setTitle] = useState ("");
+    const [product, setProduct] = useState ("");
     const [price, setPrice] = useState (0);
     const [description, setDescription] =useState("");
     const [error, setError] = useState("");
@@ -16,14 +16,14 @@ const Form = ({updateProductList}) =>{
         e.preventDefault(); //evitamos a que se recargue la pagina
         try {
             const newProduct ={
-                title, price, description //guardamos todos los valores de nuestro campo de formulario en un objeto
+                product, price, description //guardamos todos los valores de nuestro campo de formulario en un objeto
             }
             const URL = "http://localhost:8080/products/create" //guardamos nuestra ruta de nuestro servidor
             const respuesta = await axios.post(URL, newProduct) //creamos el producto en la base de datos
             console.log("data:",respuesta.data)
 
             updateProductList(respuesta.data); //llamamaos a la funcion para actualizar la lista de productos
-            setTitle("");
+            setProduct("");
             setPrice("");
             setDescription(0);
             // setError("");
@@ -47,8 +47,8 @@ const Form = ({updateProductList}) =>{
                 <input type ="text"
                         id = "title"
                         name = "title"
-                        value = {title}
-                        onChange = { (e) => setTitle(e.target.value)}/>
+                        value = {product}
+                        onChange = { (e) => setProduct(e.target.value)}/>
             </div>
             <div>
                 <label htmlFor="price">Price:</label>

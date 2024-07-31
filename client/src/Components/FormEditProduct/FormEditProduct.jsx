@@ -51,15 +51,21 @@ const FormEditProduct = (props) => {
     // Aquí deberías realizar la actualización del producto en el backend o en el estado
     try {
       const URL = `http://localhost:8080/products/edit/${actualProduct._id}`;
-    const response = await axios.put(URL, updateDetails);
-    
-    if (response.status === 200) {
+      const response = await axios.put(URL, updateDetails);
+      
+      if (response.status === 200) {
+        props.updateProductInList({...updateDetails, _id:actualProduct._id});
+        // Actualiza la lista de productos en el estado global
         navigate(`/${params._id}`); // Redirige a la página de detalles del producto solo si fue exitosa
       }
     } catch (error) {
-     // Manejo de errores
-     console.error("Algo falló:", error); // Muestra el error en la consola
-     setError(error.response ? error.response.statusText : "Error al actualizar el producto");
+      // Manejo de errores
+      console.error("Algo falló:", error); // Muestra el error en la consola
+      setError(
+        error.response
+          ? error.response.statusText
+          : "Error al actualizar el producto"
+      );
     }
   };
 

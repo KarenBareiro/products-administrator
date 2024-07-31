@@ -6,7 +6,7 @@ const Product = require ('../models/modelsProductsAdm');
 
 module.exports.createProduct = async (req, res) =>{
     const product = new Product ({
-        product: req.body.title,
+        product: req.body.product,
         price: req.body.price,
         description: req.body.description,
     });
